@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffd6e7">
+<title>Unhinged Princess</title>
+<meta property="og:title" content="Unhinged Princess">
+<meta property="og:image" content="princess.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,900&family=DM+Sans:opsz,wght@9..40,500;9..40,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffe3ef;
+    --bg2: #ffc4dc;
+    --ink: #3a0d24;
+    --pink: #e8367f;
+    --card: #ffffffcc;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { min-height: 100%; }
+  body {
+    font-family: "DM Sans", system-ui, sans-serif;
+    color: var(--ink);
+    background:
+      radial-gradient(circle at 15% 10%, #fff6 0 2px, transparent 3px) 0 0 / 46px 46px,
+      radial-gradient(circle at 70% 60%, #fff8 0 1.5px, transparent 2.5px) 0 0 / 31px 31px,
+      linear-gradient(170deg, var(--bg) 0%, var(--bg2) 100%);
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    padding: max(20px, env(safe-area-inset-top)) 16px max(28px, env(safe-area-inset-bottom));
+    -webkit-tap-highlight-color: transparent;
+  }
+  main {
+    width: 100%;
+    max-width: 440px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    text-align: center;
+  }
+  .photo {
+    width: min(78vw, 340px);
+    aspect-ratio: 3 / 4;
+    border-radius: 999px 999px 28px 28px;
+    overflow: hidden;
+    border: 6px solid #fff;
+    box-shadow: 0 0 0 2px var(--pink), 0 18px 40px -12px #c2185b66;
+    transform: rotate(-2deg);
+  }
+  .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; display: block; }
+  h1 {
+    font-family: "Playfair Display", Georgia, serif;
+    font-style: italic;
+    font-weight: 900;
+    font-size: clamp(2.4rem, 11vw, 3.4rem);
+    line-height: 0.95;
+    color: var(--pink);
+    text-shadow: 3px 3px 0 #fff;
+    letter-spacing: -0.01em;
+  }
+  h1 span { display: block; }
+  .crown { font-size: 1.6rem; margin-bottom: -10px; }
+  .quote {
+    background: var(--card);
+    border: 2px solid #fff;
+    border-radius: 22px;
+    padding: 22px 20px;
+    width: 100%;
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px -14px #c2185b55;
+    backdrop-filter: blur(6px);
+  }
+  #sentence {
+    font-family: "Playfair Display", Georgia, serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: clamp(1.25rem, 5.6vw, 1.55rem);
+    line-height: 1.3;
+    text-wrap: balance;
+  }
+  #sentence.pop { animation: pop .45s cubic-bezier(.2,.9,.3,1.3); }
+  @keyframes pop {
+    from { opacity: 0; transform: scale(.92) translateY(6px); }
+    to   { opacity: 1; transform: none; }
+  }
+  button {
+    font: inherit;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #fff;
+    background: var(--pink);
+    border: 0;
+    border-radius: 999px;
+    padding: 14px 26px;
+    min-height: 48px;
+    box-shadow: 0 6px 0 #a3134f;
+    cursor: pointer;
+    transition: transform .08s, box-shadow .08s;
+  }
+  button:active { transform: translateY(4px); box-shadow: 0 2px 0 #a3134f; }
+  @media (prefers-reduced-motion: reduce) {
+    #sentence.pop { animation: none; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <div class="photo"><img src="princess.jpg" alt="The Unhinged Princess in a tiara, holding a heart wand"></div>
+  <div>
+    <div class="crown" aria-hidden="true">👑</div>
+    <h1><span>Unhinged</span><span>Princess</span></h1>
+  </div>
+  <div class="quote"><p id="sentence" aria-live="polite"></p></div>
+  <button id="again" type="button">Another one ✨</button>
+</main>
+<script>
+  const SENTENCES = [
+    "Bibi Netanyahu is kinda hot.",
+    "Anti-vaxxers are just attention whores.",
+    "I think LinkedIn is a dating app for psychopaths.",
+    "No one knows what the fuck is happening in Ukraine.",
+    "Elon Musk does botox.",
+    "Jeff Bezos is not bald enough.",
+    "Dating your cousin should be socially acceptable.",
+    "Every wedding should include a speech from an ex.",
+    "Vegans are unbearable people.",
+    "Checking your partner's phone is a love language.",
+    "Dating someone for their American citizenship is a beautiful love story.",
+    "Harvard students should be required to pass a personality test.",
+    "MIT students should be banned from flirting until they graduate.",
+    "PhD is just a socially acceptable way to avoid getting a real job.",
+    "ChatGPT has more emotional intelligence than most people.",
+    "People who use Excel for personal finances have control issues.",
+    "Queen Camilla was the victim and Princess Diana was the villain.",
+    "We shower too much.",
+    "If someone says their hobby is traveling, I immediately think they're boring.",
+    "People should stop showing unsolicited photos of their pets.",
+    "Taylor Swift is a cult leader and I respect her for it.",
+    "Melania Trump is the most relatable woman alive. She clearly doesn't want to be there either.",
+    "Kardashians have contributed more to humanity than most Nobel Prize winners.",
+    "I would absolutely trust ChatGPT to decide which country deserves nuclear weapons.",
+    "People who introduce themselves as “Dr.” outside a hospital have an unresolved childhood trauma.",
+    "PhD students should have to compete in a reality show for their funding.",
+    "Most economists are just astrologers with better Excel skills.",
+    "Peer review should be replaced by anonymous Reddit comments.",
+    "Universities should replace dissertation defenses with lie detector tests."
+  ];
+
+  // Shuffle-bag: every sentence shows once before any repeats, remembered across taps.
+  const KEY = "unhinged-bag-v1";
+  function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch { return []; } }
+  function save(bag) { try { localStorage.setItem(KEY, JSON.stringify(bag)); } catch {} }
+
+  function next() {
+    let bag = load().filter(i => i < SENTENCES.length);
+    if (!bag.length) {
+      bag = SENTENCES.map((_, i) => i);
+      for (let i = bag.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [bag[i], bag[j]] = [bag[j], bag[i]];
+      }
+    }
+    const idx = bag.pop();
+    save(bag);
+    return SENTENCES[idx];
+  }
+
+  const el = document.getElementById("sentence");
+  function show() {
+    el.textContent = next();
+    el.classList.remove("pop"); void el.offsetWidth; el.classList.add("pop");
+  }
+  document.getElementById("again").addEventListener("click", show);
+  // Re-roll when the page comes back from the browser's back/forward cache (e.g. a repeat NFC tap).
+  window.addEventListener("pageshow", show);
+</script>
+</body>
+</html>
