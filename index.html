@@ -90,21 +90,6 @@
     from { opacity: 0; transform: scale(.92) translateY(6px); }
     to   { opacity: 1; transform: none; }
   }
-  button {
-    font: inherit;
-    font-weight: 700;
-    font-size: 1rem;
-    color: #fff;
-    background: var(--pink);
-    border: 0;
-    border-radius: 999px;
-    padding: 14px 26px;
-    min-height: 48px;
-    box-shadow: 0 6px 0 #a3134f;
-    cursor: pointer;
-    transition: transform .08s, box-shadow .08s;
-  }
-  button:active { transform: translateY(4px); box-shadow: 0 2px 0 #a3134f; }
   @media (prefers-reduced-motion: reduce) {
     #sentence.pop { animation: none; }
   }
@@ -118,7 +103,6 @@
     <h1><span>Unhinged</span><span>Princess</span></h1>
   </div>
   <div class="quote"><p id="sentence" aria-live="polite"></p></div>
-  <button id="again" type="button">Another one ✨</button>
 </main>
 <script>
   const SENTENCES = [
@@ -177,7 +161,6 @@
     el.textContent = next();
     el.classList.remove("pop"); void el.offsetWidth; el.classList.add("pop");
   }
-  document.getElementById("again").addEventListener("click", show);
   // Re-roll when the page comes back from the browser's back/forward cache (e.g. a repeat NFC tap).
   window.addEventListener("pageshow", show);
 </script>
