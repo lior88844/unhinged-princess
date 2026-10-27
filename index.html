@@ -104,9 +104,9 @@
   .quote::before {
     content: "";
     position: absolute;
-    inset: -3px;
-    border-radius: 25px;
-    padding: 3px;
+    inset: -4px;
+    border-radius: 26px;
+    padding: 4px;
     background:
       radial-gradient(#fff 0.8px, transparent 1.3px) 0 0 / 7px 7px,
       linear-gradient(120deg, #ff8cc0, #fff, #f6b3ff, #ffd36e, #fff, #ff8cc0) 0 0 / 300% 100%;
@@ -129,7 +129,7 @@
     height: var(--s);
     background: var(--c, #fff);
     clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%);
-    filter: drop-shadow(0 0 3px #fff);
+    filter: drop-shadow(0 0 4px #fff) drop-shadow(0 0 8px #ff8cc0);
     opacity: 0;
     animation: twinkle var(--d) ease-in-out var(--delay) infinite;
   }
@@ -260,18 +260,18 @@
 
   // Twinkling stars behind the content.
   const sky = document.getElementById("sparkles");
-  for (let i = 0; i < 34; i++) {
+  for (let i = 0; i < 48; i++) {
     const s = document.createElement("span");
     s.className = "spark";
-    s.style.cssText = `left:${rand(0, 100)}%;top:${rand(0, 100)}%;--s:${rand(8, 22)}px;--c:${pick(COLORS)};--d:${rand(1.8, 3.6)}s;--delay:${rand(0, 3)}s`;
+    s.style.cssText = `left:${rand(0, 100)}%;top:${rand(0, 100)}%;--s:${rand(12, 30)}px;--c:${pick(COLORS)};--d:${rand(1.8, 3.6)}s;--delay:${rand(0, 3)}s`;
     sky.appendChild(s);
   }
   // Glitter flecks drifting down in front.
   const glitter = document.getElementById("glitter");
-  for (let i = 0; i < 26; i++) {
+  for (let i = 0; i < 45; i++) {
     const f = document.createElement("span");
     f.className = "fleck";
-    f.style.cssText = `left:${rand(0, 100)}%;--s:${rand(3, 6)}px;--c:${pick(COLORS)};--d:${rand(6, 12)}s;--delay:${rand(-12, 0)}s;--drift:${rand(-40, 40)}px`;
+    f.style.cssText = `left:${rand(0, 100)}%;--s:${rand(4, 8)}px;--c:${pick(COLORS)};--d:${rand(6, 12)}s;--delay:${rand(-12, 0)}s;--drift:${rand(-40, 40)}px`;
     glitter.appendChild(f);
   }
 
